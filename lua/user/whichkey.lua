@@ -84,6 +84,21 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
+  d = {
+    name = "DAP",
+    b = {"<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint"},
+    B = {"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Breakpoint With Condition"},
+    p = {"<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point  message: '))<cr>", "Breakpoint With Message"},
+    c = {"<cmd>lua require('dap').continue()<cr>", "DAP start/continue"},
+    r = {"<cmd>lua require('dap').repl_open()<cr>", "DAP Repl"},
+    l = {"<cmd>lua require('dap').run_last()<cr>", "DAP Run Last"},
+    o = {"<cmd>lua require('dap').step_over()<cr>", "Step Over"},
+    O = {"<cmd>lua require('dap').step_out()<cr>", "Step Out"},
+    i = {"<cmd>lua require('dap').step_into()<cr>", "Step Into"},
+    u = {"<cmd>lua require('dapui').toggle()<cr>", "DAP ui Open/Close"},
+    t = {"<cmd>lua require('dap').terminate()<cr>", "DAP Terminate"},
+    -- U = {"<cmd>lua require('dapui').close()<cr>", "DAP ui Close"},
+  },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -130,7 +145,7 @@ local mappings = {
 
   l = {
     name = "LSP",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+    a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
     d = {
       "<cmd>Telescope diagnostics bufnr=0<cr>",
       "Document Diagnostics",
@@ -141,18 +156,18 @@ local mappings = {
     },
     f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
-    I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+    I = { "<cmd>Mason<cr>", "Installer Info" },
     j = {
-      "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+      "<cmd>Lspsaga diagnostic_jump_next<CR>",
       "Next Diagnostic",
     },
     k = {
-      "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+      "<cmd>Lspsaga diagnostic_jump_prev<cr>",
       "Prev Diagnostic",
     },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
     q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    r = { "<cmd>Lspsaga rename<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
