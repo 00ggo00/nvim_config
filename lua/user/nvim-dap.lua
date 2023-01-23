@@ -30,3 +30,39 @@ end
 -- dap.listeners.before.event_stopped["dapui_config"] = function()
 --   dapui.close()
 -- end
+-- dap.listeners.after.startDebugging= function(session, body)
+  -- print(vim.inspect(session), vim.inspect(body))
+-- end
+
+
+dap.set_log_level("TRACE")
+dap.adapters["pwa-node"]= {
+  -- type = "executable",
+  -- command = "/root/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter",
+  -- arg = {"45635"}
+  type = "server",
+  host = "127.0.0.1",
+  port = 53236,
+  executable = {
+    command = os.getenv("HOME").."/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter",
+    -- args = {"53236"},
+    -- cwd = "${workspaceFolder}"
+  }
+}
+dap.configurations.javascript = {
+  {
+    type = "pwa-node",
+    request = "launch",
+    name = "Launch Program",
+    program = "hello.js",
+    cwd = "${workspaceFolder}",
+    port = 53236,
+    remoteRoot = "${workspaceFolder}"
+  },
+  {
+    type = "pwa-node",
+    request = "attach",
+    name = "attach Program",
+    processId = require("dap.utils").pick_process
+  }
+}

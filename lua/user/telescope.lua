@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+telescope.load_extension("notify")
+
 local actions = require "telescope.actions"
 
 telescope.setup {
@@ -92,5 +94,12 @@ telescope.setup {
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+
+      }
+    }
   },
 }
+
+require("telescope").load_extension("ui-select")
